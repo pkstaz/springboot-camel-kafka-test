@@ -28,7 +28,7 @@
         </route>
         <route id="_route1">
             <from id="_from1" uri="direct:insertDbIdemRepo"/>
-            <log message=">>>> Escuchando kafka >>>>>>> ${Body}"/>
+            <log id="_log1" message=">>>> Escuchando kafka >>>>>>> ${body}"/>
         </route>
     </camelContext>
 </beans>
