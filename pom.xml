@@ -58,6 +58,11 @@
 			<artifactId>camel-kafka-starter</artifactId>
 			<!-- use the same version as your Camel core version -->
 		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-mongodb</artifactId>
+			<!-- use the same version as your Camel core version -->
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
