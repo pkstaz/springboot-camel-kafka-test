@@ -7,7 +7,7 @@
         <rest id="rest-48e57feb-9e04-471e-b332-cf971ac1433d">
             <get id="97448af1-6188-45f0-91f8-1f6a591b4be5" uri="/test">
                 <route>
-                	<setBody id="route-setBody">
+                	<setBody id="route-setBody2">
                 		<simple>Hello World from camel-context.xml</simple>
             		</setBody>
                 </route>
