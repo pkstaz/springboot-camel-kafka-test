@@ -27,7 +27,7 @@
             <log id="insert-mongo-log" message=">>> ${body}"/>
         </route>
         <route id="_route1">
-            <from id="_from1" uri="direct:insertDbIdemRepo"/>
+            <from id="_from1" uri="kafka:my-topic?brokers=172.30.216.25:9092"/>
             <log id="_log1" message=">>>> Escuchando kafka >>>>>>> ${body}"/>
         </route>
     </camelContext>
