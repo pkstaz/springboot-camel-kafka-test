@@ -24,7 +24,7 @@
 		</route>
 	</camelContext>
 
-	<bean id="DbLocal" name="DbLocal" class="com.mongodb.MongoClient">
+	<bean id="appDb" name="appDb" class="com.mongodb.MongoClient">
 		<constructor-arg index="0">
 			<bean class="com.mongodb.MongoClientURI">
 				<constructor-arg index="0" value="mongodb://mongodb:mongodb@172.30.21.225:27017/sampledb" />
