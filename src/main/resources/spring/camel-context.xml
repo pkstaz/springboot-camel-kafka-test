@@ -7,7 +7,7 @@
     	http://camel.apache.org/schema/spring/camel-spring.xsd">
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="_route1">
-            <from id="_from1" uri="kafka:${{kafka.topic}}?brokers=${{kafka.brokers}}"/>
+            <from id="_from1" uri="kafka:{{kafka.topic}}?brokers={{kafka.brokers}}"/>
             <log id="_log1" message=">>>> Escuchando kafka con camel >>>>>>> ${body}"/>
             <log id="_log4" message=">>>> Try Insert MongoDB >>>>>>> ${body}"/>
             <!--             <to id="_to1" uri="mongodb:myDb?database=smpledb&amp;collection=clientes&amp;operation=insert"/> -->
