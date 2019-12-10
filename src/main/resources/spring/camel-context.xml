@@ -1,36 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans                
-	http://www.springframework.org/schema/beans/spring-beans.xsd   
-	http://www.springframework.org/schema/data/mongo
-      http://www.springframework.org/schema/data/mongo/spring-mongo.xsd                            
-	http://camel.apache.org/schema/spring                      
-	http://camel.apache.org/schema/spring/camel-spring.xsd">
-	<camelContext id="camel"
-		xmlns="http://camel.apache.org/schema/spring">
-		<route id="_route1">
-			<from id="_from1"
-				uri="kafka:{{kafka.topic}}?brokers={{kafka.brokers}}" />
-			<log id="_log1"
-				message=">>>> Escuchando kafka con camel >>>>>>> ${body}" />
-			<log id="_log4" message=">>>> Try Insert MongoDB >>>>>>> ${body}" />
-			<!-- <to id="_to1" uri="mongodb:myDb?database=smpledb&amp;collection=clientes&amp;operation=insert"/> -->
-			<to uri="mongodb:appDb?database=sampledb&amp;collection=clientes&amp;operation=insert"/>
-			<log id="_log2"
-				message=">>>> After Insert MongoDB >>>>>>> ${body}" />
-			<!-- <to id="_to2" uri="mongodb:myDb?database=smpledb&amp;collection=clientes&amp;operation=findAll"/> -->
-			<log id="_log3" message=">>>> FindAll MongoDB >>>>>>> ${body}" />
-		</route>
-	</camelContext>
-
-	<bean id="appDb" name="appDb" class="com.mongodb.MongoClient">
-		<constructor-arg index="0">
-			<bean class="com.mongodb.MongoClientURI">
-				<constructor-arg index="0" value="mongodb://mongodb:mongodb@172.30.21.225:27017/sampledb" />
-			</bean>
-		</constructor-arg>
-	</bean>      
-	
-	
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans                  http://www.springframework.org/schema/beans/spring-beans.xsd     http://www.springframework.org/schema/data/mongo       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd                              http://camel.apache.org/schema/spring                        http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+            <from id="_from1" uri="kafka:{{kafka.topic}}?brokers={{kafka.brokers}}"/>
+            <log id="_log1" message=">>>> Escuchando kafka con camel >>>>>>> ${body}"/>
+            <log id="_log4" message=">>>> Try Insert MongoDB >>>>>>> ${body}"/>
+            <to id="_to1" uri="mongodb:appDb?database=sampledb&amp;collection=clientes&amp;operation=insert"/>
+            <log id="_log2" message=">>>> After Insert MongoDB >>>>>>> ${body}"/>
+            <to id="_to2" uri="mongodb:appDb?database=sampledb&amp;collection=clientes&amp;operation=findAll"/>
+            <log id="_log3" message=">>>> FindAll MongoDB >>>>>>> ${body}"/>
+        </route>
+    </camelContext>
+    <bean class="com.mongodb.MongoClient" id="appDb" name="appDb">
+        <constructor-arg index="0">
+            <bean class="com.mongodb.MongoClientURI">
+                <constructor-arg index="0" value="mongodb://mongodb:mongodb@172.30.21.225:27017/sampledb"/>
+            </bean>
+        </constructor-arg>
+    </bean>
 </beans>
