@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans          http://www.springframework.org/schema/beans/spring-beans.xsd                         http://camel.apache.org/schema/spring                http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 	<bean id="myDb" class="com.mongodb.Mongo">
-  	<constructor-arg name="host" value="${mongo.url}" />
+  	<constructor-arg name="host" value="172.30.21.225" />
     <constructor-arg name="port" value="${mongo.port}" />
   </bean>
 
