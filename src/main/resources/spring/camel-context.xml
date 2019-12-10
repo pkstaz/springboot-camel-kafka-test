@@ -12,11 +12,16 @@
             <log id="_log3" message=">>>> FindAll MongoDB >>>>>>> ${body}"/>
         </route>
     </camelContext>
-    <bean class="com.mongodb.Mongo" id="myDb">
-        <constructor-arg index="0">
-            <bean class="com.mongodb.MongoURI">
-                <constructor-arg index="0" value="mongodb://mongodb:mongodb@172.30.21.225:27017/sampledb"/>
-            </bean>
-        </constructor-arg>
+    
+    
+    <bean id="mongoTemplate" class="org.springframework.data.document.mongodb.MongoTemplate">
+        <constructor-arg name="mongo" ref="mongo"/>
+        <constructor-arg name="databaseName" value="sampledb"/>
+    </bean>
+    <bean class="com.mongodb.MongoURI" id="mongoUri">
+        <constructor-arg value="mongodb://mongodb:mongodb@172.30.21.225:27017"  />
+    </bean>
+    <bean class="com.mongodb.Mongo" id="mongo">
+        <constructor-arg ref="mongoUri" />
     </bean>
 </beans>
