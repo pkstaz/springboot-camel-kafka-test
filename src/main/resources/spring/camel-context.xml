@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans       
-		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+      	http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/data/mongo
       	http://www.springframework.org/schema/data/mongo/spring-mongo.xsd             
 		http://camel.apache.org/schema/spring             
 		http://camel.apache.org/schema/spring/camel-spring.xsd">
-
-
 
 
 	<mongo:mongo-client id="mongoBean"
@@ -19,9 +20,6 @@
 	</mongo:mongo-client>
 
 
-
-
-
 	<camelContext id="camel"
 		xmlns="http://camel.apache.org/schema/spring">
 		<route id="_route1">
@@ -29,11 +27,11 @@
 				uri="kafka:${kafka.topic}?brokers=${kafka.brokers}" />
 			<log id="_log1" message=">>>> Escuchando kafka >>>>>>> ${body}" />
 			<to id="_to1"
-				uri="mongodb:mongoBean?database=${mongo.dbname}&amp;operation=insert&amp;collection=${mongo.collection}" />
+				uri="mongodb3:mongoBean?database=${mongo.dbname}&amp;operation=insert&amp;collection=${mongo.collection}" />
 			<log id="_log2"
 				message=">>>> After Insert MongoDB >>>>>>> ${body}" />
 			<to id="_to2"
-				uri="mongodb:mongoBean?database=${mongo.dbname}&amp;collection=${mongo.collection}&amp;operation=findAll" />
+				uri="mongodb3:mongoBean?database=${mongo.dbname}&amp;collection=${mongo.collection}&amp;operation=findAll" />
 			<log id="_log3" message=">>>> FindAll MongoDB >>>>>>> ${body}" />
 		</route>
 	</camelContext>
