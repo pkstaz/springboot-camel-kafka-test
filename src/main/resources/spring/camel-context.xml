@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://www.springframework.org/schema/beans          
-    	http://www.springframework.org/schema/beans/spring-beans.xsd                         
-    	http://camel.apache.org/schema/spring                
-    	http://camel.apache.org/schema/spring/camel-spring.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans                http://www.springframework.org/schema/beans/spring-beans.xsd                               http://camel.apache.org/schema/spring                      http://camel.apache.org/schema/spring/camel-spring.xsd">
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="_route1">
             <from id="_from1" uri="kafka:{{kafka.topic}}?brokers={{kafka.brokers}}"/>
@@ -16,4 +12,11 @@
             <log id="_log3" message=">>>> FindAll MongoDB >>>>>>> ${body}"/>
         </route>
     </camelContext>
+    <bean class="com.mongodb.Mongo" id="myDb">
+        <constructor-arg index="0">
+            <bean class="com.mongodb.MongoURI">
+                <constructor-arg index="0" value="mongodb://mongodb:mongodb@172.30.21.225:27017/sampledb"/>
+            </bean>
+        </constructor-arg>
+    </bean>
 </beans>
