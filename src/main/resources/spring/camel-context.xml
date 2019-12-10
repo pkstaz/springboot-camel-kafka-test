@@ -16,6 +16,7 @@
 				message=">>>> Escuchando kafka con camel >>>>>>> ${body}" />
 			<log id="_log4" message=">>>> Try Insert MongoDB >>>>>>> ${body}" />
 			<!-- <to id="_to1" uri="mongodb:myDb?database=smpledb&amp;collection=clientes&amp;operation=insert"/> -->
+			<to uri="mongodb:appDb?database=sampledb&amp;collection=clientes&amp;operation=insert"/>
 			<log id="_log2"
 				message=">>>> After Insert MongoDB >>>>>>> ${body}" />
 			<!-- <to id="_to2" uri="mongodb:myDb?database=smpledb&amp;collection=clientes&amp;operation=findAll"/> -->
@@ -23,19 +24,13 @@
 		</route>
 	</camelContext>
 
-	<bean id="mongoAddress" class="com.mongodb.ServerAddress">
-    <constructor-arg name="host" value="172.30.21.225" />
-    <constructor-arg name="port" value="27017" />
-</bean>
-
-<bean id="mongo" class="com.mongodb.Mongo">
-    <constructor-arg name="addr" ref="mongoAddress" />
-    <constructor-arg name="options" ref="mongoOptions"/>
-</bean>
-
-
-<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-     <constructor-arg index="0" ref="mongo" />
-     <constructor-arg index="1" value="sampledb" />
-</bean>
+	<bean id="DbLocal" name="DbLocal" class="com.mongodb.MongoClient">
+		<constructor-arg index="0">
+			<bean class="com.mongodb.MongoClientURI">
+				<constructor-arg index="0" value="mongodb://mongodb:mongodb@172.30.21.225:27017/sampledb" />
+			</bean>
+		</constructor-arg>
+	</bean>      
+	
+	
 </beans>
