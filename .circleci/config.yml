@@ -1,4 +1,5 @@
-sion: 2.1
+version: 2.1
+
 
 orbs:
   maven: circleci/maven@1.1
